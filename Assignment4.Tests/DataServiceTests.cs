@@ -1,11 +1,12 @@
 using DataLayer;
+using DataLayer.Model;
 
 namespace Assignment4.Tests
 {
     public class DataServiceTests
     {
         /* Categories */
-#if COMMENT
+
         [Fact]
         public void Category_Object_HasIdNameDescription()
         {
@@ -31,7 +32,6 @@ namespace Assignment4.Tests
             var category = service.GetCategory(1);
             Assert.Equal("Beverages", category.Name);
         }
-
         [Fact]
         public void CreateCategory_ValidData_CreteCategoryAndReturnsNewObject()
         {
@@ -44,6 +44,7 @@ namespace Assignment4.Tests
             // cleanup
             service.DeleteCategory(category.Id);
         }
+
 
         [Fact]
         public void DeleteCategory_ValidId_RemoveTheCategory()
@@ -104,6 +105,7 @@ namespace Assignment4.Tests
             Assert.Equal(0, product.UnitsInStock);
         }
 
+
         [Fact]
         public void GetProduct_ValidId_ReturnsProductWithCategory()
         {
@@ -113,6 +115,9 @@ namespace Assignment4.Tests
             Assert.Equal("Beverages", product.Category?.Name);
         }
 
+
+
+        
         [Fact]
         public void GetProductsByCategory_ValidId_ReturnsProductWithCategory()
         {
@@ -124,6 +129,7 @@ namespace Assignment4.Tests
             Assert.Equal("Lakkalikööri", products.Last().Name);
         }
 
+        
         [Fact]
         public void GetProduct_NameSubString_ReturnsProductsThatMatchesTheSubString()
         {
@@ -133,6 +139,8 @@ namespace Assignment4.Tests
             Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().ProductName);
             Assert.Equal("Flotemysost", products.Last().ProductName);
         }
+        
+
 
         /* orders */
         [Fact]
@@ -147,9 +155,10 @@ namespace Assignment4.Tests
             Assert.Null(order.ShipCity);
         }
 
+
         [Fact]
         public void GetOrder_ValidId_ReturnsCompleteOrder()
-        {
+{
             var service = new DataService();
             var order = service.GetOrder(10248);
             Assert.Equal(3, order.OrderDetails?.Count);
@@ -164,7 +173,6 @@ namespace Assignment4.Tests
             var orders = service.GetOrders();
             Assert.Equal(830, orders.Count);
         }
-
 
         /* order details */
         [Fact]
@@ -201,6 +209,7 @@ namespace Assignment4.Tests
             Assert.Equal(14, orderDetails.First().UnitPrice);
             Assert.Equal(12, orderDetails.First().Quantity);
         }
+#if COMMENTs
 #endif
     }
 }
