@@ -81,13 +81,13 @@ namespace DataLayer
 
         public Product GetProduct(int id)
         {
-
             var productList = db
-                                                 .Products
-                                                 .Include(x => x.Category)
-                                                 .Where(x => x.Id == id);
-            return productList.ToList().First();
+                .Products
+                .Include(x => x.Category)
+                .Where(x => x.Id == id).ToList();
+            return productList.First();
         }
+
 
         public List<Product> GetProductByCategory(int id)
         {
@@ -96,8 +96,8 @@ namespace DataLayer
                 .Include(x => x.Category)
                 .Where(x => x.CategoryId == id).ToList();
 
-           var Nameholder = new Nameholder();
-       
+            var Nameholder = new Nameholder();
+
             foreach (var product in list)
             {
                 product.Nameholder = Nameholder;
@@ -133,11 +133,11 @@ namespace DataLayer
             var orderList = db
                 .Orders
                 .Include(x => x.OrderDetails).ThenInclude(x => x.Product).ThenInclude(x => x.Category)
-                .Where(x => x.Id == id);
+                .Where(x => x.Id == id).ToList();
 
-           // var x = db.Orders.Find(id);
+            // var x = db.Orders.Find(id);
 
-            return orderList.ToList().First();
+            return orderList.First();
         }
 
         public List<Order> GetOrders()
