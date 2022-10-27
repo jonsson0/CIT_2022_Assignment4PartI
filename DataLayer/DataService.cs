@@ -101,8 +101,8 @@ namespace DataLayer
             foreach (var product in list)
             {
                 product.Nameholder = Nameholder;
-                product.Nameholder.name = product.Category.Name;
-                product.CategoryName = product.Nameholder.name;
+                product.Nameholder.Name = product.Category.Name;
+                product.CategoryName = product.Nameholder.Name;
             }
             return list;
         }
@@ -120,8 +120,8 @@ namespace DataLayer
             foreach (var product in list)
             {
                 product.Nameholder = Nameholder;
-                product.Nameholder.name = product.Name;
-                product.ProductName = product.Nameholder.name;
+                product.Nameholder.Name = product.Name;
+                product.ProductName = product.Nameholder.Name;
             }
 
             return list;
@@ -134,6 +134,8 @@ namespace DataLayer
                 .Orders
                 .Include(x => x.OrderDetails).ThenInclude(x => x.Product).ThenInclude(x => x.Category)
                 .Where(x => x.Id == id);
+
+           // var x = db.Orders.Find(id);
 
             return orderList.ToList().First();
         }
