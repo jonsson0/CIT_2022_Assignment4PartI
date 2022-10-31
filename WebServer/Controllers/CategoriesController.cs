@@ -49,10 +49,11 @@ namespace WebServer.Controllers
         public IActionResult CreateCategory(CategoryCreateModel model)
         {
             var category = _mapper.Map<Category>(model);
-            
+
             _dataService.CreateCategory(category);
 
             return CreatedAtRoute(null, CreateCategoryModel(category));
+          //  return CreatedAtRoute(null, category);
         }
 
         [HttpDelete("{id}")]
@@ -64,8 +65,28 @@ namespace WebServer.Controllers
             {
                return  NotFound();
             }
-
             return Ok();
+        }
+
+        [HttpPut("{id}", Name = nameof(UpdateCategory))]
+        public IActionResult UpdateCategory(int id, CategoryCreateModel model)
+        {
+           // var category = _dataService.GetCategory(Int32.Parse(categoryModel.Url.Substring(categoryModel.Url.Length - 4)));
+       
+           
+           if (_dataService.GetCategory(id) == null)
+           {
+               return NotFound();
+           }
+
+           var category = _mapper.Map<Category>(model);
+
+           var categoryactual = _dataService.GetCategory(id);
+
+
+           _dataService.UpdateCategory(categoryactual.Id, category.Name, category.Description);
+
+           return Ok();
         }
 
 

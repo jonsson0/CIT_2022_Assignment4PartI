@@ -70,6 +70,10 @@ namespace DataLayer
                 return false;
             }
         }
+        public Category UpdateCategory(Category category)
+        {
+            return null;
+        }
 
         public bool UpdateCategory(int id, string name, string desc)
         {
@@ -189,5 +193,6 @@ namespace DataLayer
                 .OrderBy(x => x.OrderId).ToList();
             return orderDetailsList;
         }
+
     }
 }

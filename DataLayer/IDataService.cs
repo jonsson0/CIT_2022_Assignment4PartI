@@ -12,6 +12,7 @@ namespace DataLayer
         Product? GetProduct(int id);
         Category CreateCategory(string name, string desc);
         Category CreateCategory(Category category);
+        Category UpdateCategory(Category category);
 
         bool UpdateCategory(int id, string name, string desc);
         bool DeleteCategory(int id);

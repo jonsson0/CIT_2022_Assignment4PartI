@@ -83,7 +83,6 @@ namespace Assignment4.Tests
 
             DeleteData($"{CategoriesApi}/{category["id"]}");
         }
-#if COMMENT
 
         [Fact]
         public void ApiCategories_PutWithInvalidCategory_NotFound()
@@ -100,6 +99,7 @@ namespace Assignment4.Tests
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
 
+#if COMMENT
         [Fact]
         public void ApiCategories_DeleteWithValidId_Ok()
         {
