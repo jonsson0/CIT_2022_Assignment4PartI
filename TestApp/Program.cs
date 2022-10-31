@@ -2,15 +2,15 @@
 
 var ds = new DataService();
 
-var list = ds.GetOrderDetailsByProductId(1);
+var list = ds.GetProductByCategory(1);
 
 Console.WriteLine("here:");
-Console.WriteLine(list.First().Order?.Date.ToString());
+Console.WriteLine(list.First());
 
 // .Date.ToString("yyyy-MM-dd")
 
-foreach (var orderdetail in list)
+foreach (var dummyProduct in list)
 {
-    Console.WriteLine(orderdetail.Order?.Id);
+    Console.WriteLine(dummyProduct.Name);
 
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
+using DataLayer.DummyModel;
 
 namespace DataLayer.Model
 {
@@ -12,13 +13,15 @@ namespace DataLayer.Model
         
         public Category? Category { get; set; }
 
+        /*
         [NotMapped]
         public string CategoryName { get; set; }
         [NotMapped]
         public string ProductName { get; set; }
 
         [NotMapped]
-        public Nameholder Nameholder { get; set; }
+        public DummyProduct Nameholder { get; set; }
+        */
 
         /*
         [NotMapped]
@@ -30,6 +33,7 @@ namespace DataLayer.Model
         [NotMapped]
         public Nameholder Nameholder { get; set; }
         */
+
 
         public string? QuantityPerUnit { get; set; }
         public int UnitPrice { get; set; }
