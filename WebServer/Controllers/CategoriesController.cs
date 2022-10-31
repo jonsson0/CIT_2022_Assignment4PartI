@@ -68,7 +68,7 @@ namespace WebServer.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}", Name = nameof(UpdateCategory))]
+        [HttpPut("{id}", Name = "update")]
         public IActionResult UpdateCategory(int id, CategoryCreateModel model)
         {
            // var category = _dataService.GetCategory(Int32.Parse(categoryModel.Url.Substring(categoryModel.Url.Length - 4)));

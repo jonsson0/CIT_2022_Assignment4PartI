@@ -107,7 +107,13 @@ namespace DataLayer
                 .Products
                 .Include(x => x.Category)
                 .Where(x => x.Id == id).ToList();
-            return productList.First();
+
+            foreach (var product in productList)
+            {
+                return productList.First();
+            }
+            
+            return null;
         }
 
         public List<Product_getProductByCategory_Model> GetProductByCategory(int id)

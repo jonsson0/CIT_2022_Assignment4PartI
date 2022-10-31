@@ -57,6 +57,16 @@ namespace WebServer.Controllers
 
         }
 
+        [HttpGet("category/{id}", Name = nameof(getProductsByCategory))]
+        public IActionResult getProductsByCategory(int id)
+        {
+
+            return null;
+        }
+
+
+
+
         private ProductListModel CreateProductListModel(Product product)
         {
             var model = _mapper.Map<ProductListModel>(product);

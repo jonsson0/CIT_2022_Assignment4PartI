@@ -99,7 +99,6 @@ namespace Assignment4.Tests
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
 
-#if COMMENT
         [Fact]
         public void ApiCategories_DeleteWithValidId_Ok()
         {
@@ -156,6 +155,7 @@ namespace Assignment4.Tests
             Assert.Equal("Beverages", products.First()["categoryName"]);
             Assert.Equal("Lakkalikööri", products.Last()["name"]);
         }
+#if COMMENT
 
         [Fact]
         public void ApiProducts_CategoryInvalidId_EmptyListOfProductAndNotFound()
