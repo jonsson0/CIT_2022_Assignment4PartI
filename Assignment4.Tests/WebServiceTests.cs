@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Assignment4.Tests
 {
-    
+
     public class WebServiceTests
     {
         private const string CategoriesApi = "http://localhost:5001/api/categories";
@@ -48,10 +48,21 @@ namespace Assignment4.Tests
                 Description = ""
             };
             var (category, statusCode) = PostData(CategoriesApi, newCategory);
+            
+            string id = null;
+            if (category["id"] == null)
+            {
+                var url = category["url"].ToString();
+                id = url.Substring(url.LastIndexOf('/') + 1);
+            }
+            else
+            {
+                id = category["id"].ToString();
+            }
 
             Assert.Equal(HttpStatusCode.Created, statusCode);
 
-            DeleteData($"{CategoriesApi}/{category["id"]}");
+            DeleteData($"{CategoriesApi}/{id}");
         }
 
         [Fact]
@@ -76,6 +87,7 @@ namespace Assignment4.Tests
                 id = category["id"].ToString();
             }
 
+
             var update = new
             {
                 Id = category["id"],
@@ -83,16 +95,16 @@ namespace Assignment4.Tests
                 Description = category["description"] + "Updated"
             };
 
-            var statusCode = PutData($"{CategoriesApi}/{category["id"]}", update);
+            var statusCode = PutData($"{CategoriesApi}/{id}", update);
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
 
-            var (cat, _) = GetObject($"{CategoriesApi}/{category["id"]}");
+            var (cat, _) = GetObject($"{CategoriesApi}/{id}");
 
             Assert.Equal(category["name"] + "Updated", cat["name"]);
             Assert.Equal(category["description"] + "Updated", cat["description"]);
 
-            DeleteData($"{CategoriesApi}/{category["id"]}");
+            DeleteData($"{CategoriesApi}/{id}");
         }
 
         [Fact]
@@ -120,8 +132,19 @@ namespace Assignment4.Tests
                 Description = "Created"
             };
             var (category, _) = PostData($"{CategoriesApi}", data);
+            
+            string id = null;
+            if (category["id"] == null)
+            {
+                var url = category["url"].ToString();
+                id = url.Substring(url.LastIndexOf('/') + 1);
+            }
+            else
+            {
+                id = category["id"].ToString();
+            }
 
-            var statusCode = DeleteData($"{CategoriesApi}/{category["id"]}");
+            var statusCode = DeleteData($"{CategoriesApi}/{id}");
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
         }
@@ -176,7 +199,6 @@ namespace Assignment4.Tests
             Assert.Equal(0, products.Count);
         }
 
-
         [Fact]
         public void ApiProducts_NameContained_ListOfProduct()
         {
@@ -187,7 +209,6 @@ namespace Assignment4.Tests
             Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First()["productName"]);
             Assert.Equal("Flotemysost", products.Last()["productName"]);
         }
-
 
         [Fact]
         public void ApiProducts_NameNotContained_EmptyListOfProductAndNotFound()
@@ -247,7 +268,6 @@ namespace Assignment4.Tests
         {
             var client = new HttpClient();
             var response = client.DeleteAsync(url).Result;
-            Console.WriteLine(response.StatusCode);
             return response.StatusCode;
         }
     }
