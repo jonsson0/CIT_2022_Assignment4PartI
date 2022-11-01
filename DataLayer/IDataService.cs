@@ -1,6 +1,7 @@
 ﻿using DataLayer.Models;
 using System.Collections.Generic;
 using DataLayer.Model;
+using DataLayer.DummyModel;
 
 namespace DataLayer
 {
@@ -10,6 +11,8 @@ namespace DataLayer
         Category? GetCategory(int id);
         List<Product> GetProducts();
         Product? GetProduct(int id);
+        List<Product_getProductByCategory_Model>? GetProductByCategory(int id);
+
         Category CreateCategory(string name, string desc);
         Category CreateCategory(Category category);
         Category UpdateCategory(Category category);

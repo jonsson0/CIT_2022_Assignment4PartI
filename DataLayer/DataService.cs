@@ -142,7 +142,8 @@ namespace DataLayer
             var list = db
                 .Products
                 .Include(x => x.Category)
-                .Where(x => x.Name.Contains(name)).ToList();
+                .Where(x => x.Name.Contains(name))
+                .OrderBy(x => x.Id).ToList();
 
             var dummyProductList = new List<ProductSearchModel>();
 

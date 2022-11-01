@@ -26,7 +26,7 @@ namespace WebServer.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet ("name/{search}")]
         public IActionResult GetProducts(string? search = null)
         {
             if (string.IsNullOrEmpty(search))
@@ -37,7 +37,13 @@ namespace WebServer.Controllers
             }
 
             var data = _dataService.GetProductByName(search);
-            return Ok(data);
+            foreach (var product in data)
+            {
+                return Ok(data);
+
+            }
+
+            return NotFound(data);
         }
 
 
@@ -57,14 +63,24 @@ namespace WebServer.Controllers
 
         }
 
-        /*
+        
         [HttpGet("category/{id}", Name = nameof(getProductsByCategory))]
         public IActionResult getProductsByCategory(int id)
         {
+         
+            var products = _dataService.GetProductByCategory(id);
+            // prolly needs some mapping
+            foreach (var product in products)
+            {
+              return Ok(products);
+            }
+            
 
-            return null;
+
+            return NotFound(products);
+
         }
-        */
+
 
 
 
