@@ -68,13 +68,13 @@ namespace WebServer.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}", Name = "update")]
-        public IActionResult UpdateCategory(int id, CategoryCreateModel model)
+        [HttpPut("{id}", Name = nameof(UpdateCategory))]
+        public IActionResult UpdateCategory(CategoryCreateModel model)
         {
-           // var category = _dataService.GetCategory(Int32.Parse(categoryModel.Url.Substring(categoryModel.Url.Length - 4)));
-       
-           
-           if (_dataService.GetCategory(id) == null)
+            // var category = _dataService.GetCategory(Int32.Parse(categoryModel.Url.Substring(categoryModel.Url.Length - 4)));
+
+
+            if (_dataService.GetCategory(id) == null)
            {
                return NotFound();
            }
