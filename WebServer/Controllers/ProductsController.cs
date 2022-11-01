@@ -57,12 +57,14 @@ namespace WebServer.Controllers
 
         }
 
+        /*
         [HttpGet("category/{id}", Name = nameof(getProductsByCategory))]
         public IActionResult getProductsByCategory(int id)
         {
 
             return null;
         }
+        */
 
 
 

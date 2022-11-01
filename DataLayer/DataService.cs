@@ -101,7 +101,7 @@ namespace DataLayer
             return db.Products.ToList();
         }
 
-        public Product GetProduct(int id)
+        public Product? GetProduct(int id)
         {
             var productList = db
                 .Products
