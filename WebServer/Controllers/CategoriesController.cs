@@ -86,9 +86,9 @@ namespace WebServer.Controllers
             
            _dataService.UpdateCategory(realCategory.Id, category.Name, category.Description);
 
+           CategoryModel categoryModel = CreateCategoryModel(realCategory);
 
-
-            return Ok(realCategory);
+            return Ok(categoryModel);
         }
 
 
