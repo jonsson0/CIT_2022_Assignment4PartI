@@ -1,4 +1,5 @@
-﻿using DataLayer.DummyModel;
+﻿using System.ComponentModel;
+using DataLayer.DummyModel;
 using DataLayer.Model;
 using DataLayer.Models;
 using EF;
@@ -15,11 +16,14 @@ namespace DataLayer
         {
             using var db = new NorthwindContext();
 
-            return db.Categories.ToList();
+
+
+          return db.Categories.ToList();
         }
 
         public Category GetCategory(int id)
         {
+
             return db.Categories.Find(id);
         }
 
@@ -103,10 +107,12 @@ namespace DataLayer
 
         public Product? GetProduct(int id)
         {
+
             var productList = db
                 .Products
                 .Include(x => x.Category)
-                .Where(x => x.Id == id).ToList();
+                .Where(x => x.Id == id).ToList(); 
+                
 
             foreach (var product in productList)
             {
@@ -118,6 +124,8 @@ namespace DataLayer
 
         public List<Product_getProductByCategory_Model> GetProductByCategory(int id)
         {
+            
+
             var list = db
                 .Products
                 .Include(x => x.Category)
